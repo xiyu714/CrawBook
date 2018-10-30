@@ -1,7 +1,7 @@
 package main
 
 import (
-	"CrawBook/github.com/axgle/mahonia"
+	"CrawBook2/tool"
 	"bytes"
 	"fmt"
 	"golang.org/x/net/html"
@@ -26,7 +26,7 @@ func main() {
 
 	parse(doc)
 
-	str := utf8(buf.String())
+	str := tool.Utf8(buf.String())
 
 	//存入文件
 	file, err := os.Create("output/test.txt")
@@ -36,17 +36,6 @@ func main() {
 
 	strR := strings.NewReader(str)
 	strR.WriteTo(file)
-
-}
-
-func utf8(str string) string {
-	decoder := mahonia.NewDecoder("gbk")
-	s := decoder.ConvertString(str)
-	bs := strings.Replace(s, "聽", " ", -1)
-	bs = strings.Replace(bs, "\n\n\n\n", "\n", -1)
-	bs = strings.Replace(bs, "小?說", "", -1)
-
-	return bs
 }
 
 var hasfind = false

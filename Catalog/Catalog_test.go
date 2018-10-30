@@ -1,4 +1,4 @@
-package main
+package Catalog
 
 import (
 	"testing"
@@ -6,5 +6,5 @@ import (
 
 func TestCatalog(t *testing.T) {
 	var c Catalog
-
+	c.getCatalog("http://www.biquge.com.tw/18_18550/")
 }
