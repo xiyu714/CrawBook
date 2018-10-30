@@ -1,7 +1,10 @@
-package test
+package main
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestCatalog(t *testing.T) {
+	var c Catalog
 
 }

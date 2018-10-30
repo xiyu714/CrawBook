@@ -29,7 +29,7 @@ func main() {
 	str := utf8(buf.String())
 
 	//存入文件
-	file, err := os.Create("test.txt")
+	file, err := os.Create("output/test.txt")
 	if err != nil {
 		fmt.Println("open", err)
 	}
