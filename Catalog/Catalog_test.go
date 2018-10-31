@@ -8,6 +8,7 @@ import (
 func TestCatalog(t *testing.T) {
 	var c Catalog
 	c.getCatalog("http://www.biquge.com.tw/18_18550/")
+	fmt.Println(c.zhangs[2])
 }
 
 func TestDarray(t *testing.T) {
