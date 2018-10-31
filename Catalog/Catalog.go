@@ -12,7 +12,7 @@ type Catalog struct {
 	zhangs [][2]string
 }
 
-func (c Catalog) getCatalog(url string) {
+func (c *Catalog) getCatalog(url string) {
 	decoder := mahonia.NewDecoder("gbk")
 
 	resp, err := http.Get(url)
@@ -65,6 +65,4 @@ func (c Catalog) getCatalog(url string) {
 		}
 		c.zhangs = append(c.zhangs, [2]string{value, str})
 	})
-	fmt.Println(c.zhangs[2])
-
 }
