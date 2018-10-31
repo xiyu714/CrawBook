@@ -10,10 +10,10 @@ import (
 
 //不能给默认值
 type Catalog struct {
-	zhangs [][2]string
+	Zhangs [][2]string
 }
 
-func (c *Catalog) getCatalog(rurl string) {
+func (c *Catalog) GetCatalog(rurl string) {
 	decoder := mahonia.NewDecoder("gbk")
 
 	resp, err := http.Get(rurl)
@@ -46,7 +46,7 @@ func (c *Catalog) getCatalog(rurl string) {
 	//		}
 	//		println(str)
 	//		println(value)
-	//		c.zhangs = append(c.zhangs, [2]string{value, str})
+	//		c.Zhangs = append(c.Zhangs, [2]string{value, str})
 	//	})
 	//})
 	//-- 之所以出现这样的问题，是因为我根本就不知道我在操作什么
@@ -68,6 +68,6 @@ func (c *Catalog) getCatalog(rurl string) {
 		r, _ := url.Parse(value)
 		aurl := u.ResolveReference(r).String()
 
-		c.zhangs = append(c.zhangs, [2]string{aurl, str})
+		c.Zhangs = append(c.Zhangs, [2]string{aurl, str})
 	})
 }
