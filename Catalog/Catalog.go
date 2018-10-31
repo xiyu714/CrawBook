@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"net/http"
+	"net/url"
 )
 
 //不能给默认值
@@ -12,10 +13,10 @@ type Catalog struct {
 	zhangs [][2]string
 }
 
-func (c *Catalog) getCatalog(url string) {
+func (c *Catalog) getCatalog(rurl string) {
 	decoder := mahonia.NewDecoder("gbk")
 
-	resp, err := http.Get(url)
+	resp, err := http.Get(rurl)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -63,6 +64,10 @@ func (c *Catalog) getCatalog(url string) {
 		if !ok {
 			println("no")
 		}
-		c.zhangs = append(c.zhangs, [2]string{value, str})
+		u, _ := url.Parse(rurl)
+		r, _ := url.Parse(value)
+		aurl := u.ResolveReference(r).String()
+
+		c.zhangs = append(c.zhangs, [2]string{aurl, str})
 	})
 }
