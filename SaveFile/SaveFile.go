@@ -15,7 +15,7 @@ type SaveFile struct {
 var abuf []string
 var wg sync.WaitGroup
 
-func (s *SaveFile) save(c Catalog) {
+func (s *SaveFile) Save(c Catalog) {
 	//var buf bytes.Buffer
 	abuf = make([]string, len(c.Zhangs))
 
