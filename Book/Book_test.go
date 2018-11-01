@@ -1,4 +1,4 @@
-package Catalog
+package Book
 
 import (
 	"fmt"
@@ -7,8 +7,8 @@ import (
 )
 
 func TestCatalog(t *testing.T) {
-	var c Catalog
-	c.GetCatalog("http://www.biquge.com.tw/18_18550/")
+	var c Book
+	c.GetBook("http://www.biquge.com.tw/18_18550/")
 	fmt.Println(c.Zhangs[2])
 }
 

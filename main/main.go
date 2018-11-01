@@ -1,7 +1,7 @@
 package main
 
 import (
-	"CrawBook2/Catalog"
+	"CrawBook2/Book"
 	"CrawBook2/SaveFile"
 	"fmt"
 	"time"
@@ -10,9 +10,9 @@ import (
 func main() {
 	t1 := time.Now()
 
-	var c Catalog.Catalog
+	var c Book.Book
 
-	c.GetCatalog("http://www.biquge.com.tw/18_18550/")
+	c.GetBook("http://www.biquge.com.tw/18_18550/")
 
 	var s SaveFile.SaveFile
 

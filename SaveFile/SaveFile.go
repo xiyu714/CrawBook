@@ -1,7 +1,7 @@
 package SaveFile
 
 import (
-	. "CrawBook2/Catalog"
+	. "CrawBook2/Book"
 	"CrawBook2/tool"
 	"fmt"
 	"os"
@@ -15,11 +15,11 @@ type SaveFile struct {
 var abuf []string
 var wg sync.WaitGroup
 
-func (s *SaveFile) Save(c Catalog) {
+func (s *SaveFile) Save(c Book) {
 	//var buf bytes.Buffer
 	abuf = make([]string, len(c.Zhangs))
 
-	file, err := os.Create("test.txt")
+	file, err := os.Create(c.Name)
 	if err != nil {
 		fmt.Println(err)
 	}

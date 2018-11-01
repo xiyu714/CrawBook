@@ -1,4 +1,4 @@
-package Catalog
+package Book
 
 import (
 	"CrawBook/github.com/axgle/mahonia"
@@ -9,11 +9,12 @@ import (
 )
 
 //不能给默认值
-type Catalog struct {
+type Book struct {
+	Name   string
 	Zhangs [][2]string
 }
 
-func (c *Catalog) GetCatalog(rurl string) {
+func (c *Book) GetBook(rurl string) {
 	decoder := mahonia.NewDecoder("gbk")
 
 	resp, err := http.Get(rurl)
@@ -29,6 +30,7 @@ func (c *Catalog) GetCatalog(rurl string) {
 		println(err)
 	}
 
+	//获得章节目录
 	var str string
 	var value string
 	var ok bool
@@ -47,5 +49,10 @@ func (c *Catalog) GetCatalog(rurl string) {
 		aurl := u.ResolveReference(r).String()
 
 		c.Zhangs = append(c.Zhangs, [2]string{aurl, str})
+	})
+
+	//获取书名
+	doc.Find("#info > h1:nth-child(1)").Each(func(i int, s *goquery.Selection) {
+		c.Name = s.Text()
 	})
 }

@@ -1,14 +1,14 @@
 package SaveFile
 
 import (
-	. "CrawBook2/Catalog"
+	. "CrawBook2/Book"
 	"testing"
 )
 
 func TestSaveFile(t *testing.T) {
 	var s SaveFile
-	var c Catalog
+	var c Book
 
-	c.GetCatalog("http://www.biquge.com.tw/18_18550/")
-	s.save(c)
+	c.GetBook("http://www.biquge.com.tw/18_18550/")
+	s.Save(c)
 }
