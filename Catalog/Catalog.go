@@ -29,28 +29,6 @@ func (c *Catalog) GetCatalog(rurl string) {
 		println(err)
 	}
 
-	//var str string
-	//var value string
-	//var ok bool
-	//doc.Find("#list > dl:nth-child(1)").Each(func(i int, s *goquery.Selection) {
-	//	s.Children().Each(func(j int, selection *goquery.Selection) {
-	//		//strh, err := selection.Html()
-	//		//if err != nil {
-	//		//	fmt.Println(err)
-	//		//}
-	//		//-- 测试能否读取内部html
-	//		str = selection.Text()
-	//		value, ok = selection.Attr("href")
-	//		if !ok {
-	//			println("no")
-	//		}
-	//		println(str)
-	//		println(value)
-	//		c.Zhangs = append(c.Zhangs, [2]string{value, str})
-	//	})
-	//})
-	//-- 之所以出现这样的问题，是因为我根本就不知道我在操作什么
-
 	var str string
 	var value string
 	var ok bool
