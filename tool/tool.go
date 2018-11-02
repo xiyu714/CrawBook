@@ -1,9 +1,9 @@
 package tool
 
 import (
-	"CrawBook/github.com/axgle/mahonia"
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
+	"github.com/axgle/mahonia"
 	"net/http"
 	"strings"
 )

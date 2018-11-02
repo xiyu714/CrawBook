@@ -1,9 +1,9 @@
 package Book
 
 import (
-	"CrawBook/github.com/axgle/mahonia"
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
+	"github.com/axgle/mahonia"
 	"net/http"
 	"net/url"
 )
