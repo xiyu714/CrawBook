@@ -19,7 +19,7 @@ func (s *SaveFile) Save(c Book) {
 	//var buf bytes.Buffer
 	abuf = make([]string, len(c.Zhangs))
 
-	file, err := os.Create(c.Name)
+	file, err := os.Create(c.Name + ".txt")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -39,7 +39,7 @@ func (s *SaveFile) Save(c Book) {
 }
 
 func addOne(i int, u [2]string) {
-	abuf[i] = u[1] + "\n" + tool.GetOneChapter(u[0]) + "\n"
+	abuf[i] = u[1] + "\r\n" + tool.GetOneChapter(u[0]) + "\r\n\r\n"
 	fmt.Println(u[1])
 	wg.Done()
 }
