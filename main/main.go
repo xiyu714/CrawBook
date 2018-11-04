@@ -18,7 +18,6 @@ func main() {
 
 	//c.GetBook("http://www.biquge.com.tw/18_18550/")
 	c.GetBook(url)
-
 	var s SaveFile.SaveFile
 
 	s.Save(c)

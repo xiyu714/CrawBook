@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"github.com/axgle/mahonia"
+	"gopkg.in/yaml.v2"
 	"net/http"
 	"net/url"
+	"os"
 )
 
 //不能给默认值
@@ -13,6 +15,18 @@ type Book struct {
 	Name   string
 	Zhangs [][2]string
 }
+
+type 网站信息 struct {
+	V网站配置详情 map[string]网站配置 `yaml:"网站配置详情"`
+}
+
+type 网站配置 struct {
+	V书名 string      `yaml:"书名"`
+	V过滤 [][2]string `yaml:"过滤,flow"` //key,tag  ,后面不能有空格
+	V章节 string      `yaml:"章节"`
+}
+
+var w 网站信息
 
 func (c *Book) GetBook(rurl string) {
 	decoder := mahonia.NewDecoder("gbk")
@@ -55,4 +69,12 @@ func (c *Book) GetBook(rurl string) {
 	doc.Find("#info > h1:nth-child(1)").Each(func(i int, s *goquery.Selection) {
 		c.Name = s.Text()
 	})
+}
+
+func init() {
+	var w 网站信息
+
+	yfile, _ := os.Open("../config/配置文件.yaml")
+	ydecoder := yaml.NewDecoder(yfile)
+	ydecoder.Decode(&w)
 }
