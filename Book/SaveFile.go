@@ -1,21 +1,16 @@
-package SaveFile
+package Book
 
 import (
-	. "CrawBook2/Book"
-	"CrawBook2/tool"
 	"fmt"
 	"os"
 	"strings"
 	"sync"
 )
 
-type SaveFile struct {
-}
-
 var abuf []string
 var wg sync.WaitGroup
 
-func (s *SaveFile) Save(c Book) {
+func (c *Book) Save() {
 	//var buf bytes.Buffer
 	abuf = make([]string, len(c.Zhangs))
 
@@ -30,7 +25,7 @@ func (s *SaveFile) Save(c Book) {
 		//buf.WriteString(u[1])
 		//fmt.Println(u[1])
 		//buf.WriteString("\n")
-		//buf.WriteString(tool.GetOneChapter(u[0]))
+		//buf.WriteString(tool.getOneChapter(u[0]))
 		//buf.WriteString("\n")
 	}
 	wg.Wait()
@@ -39,7 +34,7 @@ func (s *SaveFile) Save(c Book) {
 }
 
 func addOne(i int, u [2]string) {
-	abuf[i] = u[1] + "\r\n" + tool.GetOneChapter(u[0]) + "\r\n\r\n"
+	abuf[i] = u[1] + "\r\n" + getOneChapter(u[0]) + "\r\n\r\n"
 	fmt.Println(u[1])
 	wg.Done()
 }

@@ -1,5 +1,5 @@
 网站配置详情:
   www.biquge.com.tw:
     书名: '#info > h1:nth-child(1)'
-    过滤: [[hello, world]]
+    过滤: [["<br/>\n<br/>\n", "\r\n"], ["小?說", ""]]
     章节: '#list > dl:nth-child(1)'

@@ -1,4 +1,4 @@
-package tool
+package Book
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func GetOneChapter(url string) (str string) {
+func getOneChapter(url string) (str string) {
 	decoder := mahonia.NewDecoder("gbk")
 
 	resp, err := http.Get(url)
@@ -27,8 +27,11 @@ func GetOneChapter(url string) (str string) {
 	//获取文档中的内容
 	doc.Find("#content").Each(func(i int, selection *goquery.Selection) {
 		str, _ = selection.Html()
-		str = strings.Replace(str, "<br/>\n<br/>\n", "\r\n", -1)
-		str = strings.Replace(str, "小?說", "", -1)
+		//str = strings.Replace(str, "<br/>\n<br/>\n", "\r\n", -1)
+		//str = strings.Replace(str, "小?說", "", -1)
+		for _, rs := range b.Filter {
+			str = strings.Replace(str, rs[0], rs[1], -1)
+		}
 	})
 
 	return

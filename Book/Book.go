@@ -30,6 +30,7 @@ type 网站配置 struct {
 
 var w 网站信息
 var 当前网站 string
+var b *Book
 
 func (c *Book) GetBook(rurl string) {
 	okw, 网站 := isSupport("http://www.biquge.com.tw/18_18550/")
@@ -37,6 +38,8 @@ func (c *Book) GetBook(rurl string) {
 		fmt.Println("此程序当前不支持此网站")
 		os.Exit(-1)
 	}
+
+	b = c
 
 	decoder := mahonia.NewDecoder("gbk")
 

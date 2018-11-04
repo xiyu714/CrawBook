@@ -2,7 +2,6 @@ package main
 
 import (
 	"CrawBook2/Book"
-	"CrawBook2/SaveFile"
 	"flag"
 	"fmt"
 	"os"
@@ -18,9 +17,7 @@ func main() {
 
 	//c.GetBook("http://www.biquge.com.tw/18_18550/")
 	c.GetBook(url)
-	var s SaveFile.SaveFile
-
-	s.Save(c)
+	c.Save()
 
 	fmt.Println("elapsed time:", time.Since(t1))
 }
