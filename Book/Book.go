@@ -15,6 +15,7 @@ import (
 type Book struct {
 	Name   string
 	Zhangs [][2]string
+	Filter [][2]string
 }
 
 type 网站信息 struct {
@@ -28,6 +29,7 @@ type 网站配置 struct {
 }
 
 var w 网站信息
+var 当前网站 string
 
 func (c *Book) GetBook(rurl string) {
 	okw, 网站 := isSupport("http://www.biquge.com.tw/18_18550/")
@@ -76,6 +78,7 @@ func (c *Book) GetBook(rurl string) {
 	doc.Find(网站.V书名).Each(func(i int, s *goquery.Selection) {
 		c.Name = s.Text()
 	})
+	c.Filter = w.V网站配置详情[当前网站].V过滤
 }
 
 func isSupport(url string) (ok bool, p 网站配置) {
@@ -91,6 +94,7 @@ func isSupport(url string) (ok bool, p 网站配置) {
 
 func getDomain(rurl string) (domain string) {
 	u, _ := url.Parse(rurl)
+	当前网站 = u.Host
 	domain = u.Host
 	return
 }
