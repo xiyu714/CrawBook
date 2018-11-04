@@ -5,6 +5,7 @@ import (
 	"github.com/PuerkitoBio/goquery"
 	"github.com/axgle/mahonia"
 	"gopkg.in/yaml.v2"
+	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -29,6 +30,12 @@ type 网站配置 struct {
 var w 网站信息
 
 func (c *Book) GetBook(rurl string) {
+	okw, 网站 := isSupport("http://www.biquge.com.tw/18_18550/")
+	if !okw {
+		fmt.Println("此程序当前不支持此网站")
+		os.Exit(-1)
+	}
+
 	decoder := mahonia.NewDecoder("gbk")
 
 	resp, err := http.Get(rurl)
@@ -48,7 +55,7 @@ func (c *Book) GetBook(rurl string) {
 	var str string
 	var value string
 	var ok bool
-	doc.Find("#list > dl:nth-child(1)").Children().Children().Each(func(i int, s *goquery.Selection) {
+	doc.Find(网站.V章节).Children().Children().Each(func(i int, s *goquery.Selection) {
 		str, err = s.Html()
 		if err != nil {
 			fmt.Println(err)
@@ -66,15 +73,33 @@ func (c *Book) GetBook(rurl string) {
 	})
 
 	//获取书名
-	doc.Find("#info > h1:nth-child(1)").Each(func(i int, s *goquery.Selection) {
+	doc.Find(网站.V书名).Each(func(i int, s *goquery.Selection) {
 		c.Name = s.Text()
 	})
 }
 
-func init() {
-	var w 网站信息
+func isSupport(url string) (ok bool, p 网站配置) {
+	url = getDomain(url)
+	for key, details := range w.V网站配置详情 {
+		if url == key {
+			return true, details
+		}
+	}
+	ok = false
+	return
+}
 
-	yfile, _ := os.Open("../config/配置文件.yaml")
+func getDomain(rurl string) (domain string) {
+	u, _ := url.Parse(rurl)
+	domain = u.Host
+	return
+}
+
+func init() {
+	yfile, err := os.Open("config/配置文件.yaml")
+	if err != nil {
+		log.Fatal(err)
+	}
 	ydecoder := yaml.NewDecoder(yfile)
 	ydecoder.Decode(&w)
 }

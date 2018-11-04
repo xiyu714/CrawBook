@@ -32,6 +32,18 @@ func TestUrl(t *testing.T) {
 		fmt.Println("ok")
 	}
 }
+
+func TestDomain(t *testing.T) {
+	u := getDomain("http://www.biquge.com.tw/18_18550/")
+	fmt.Println(u) //输出www.biquge.com.tw
+}
+
+func TestIsSupport(t *testing.T) {
+	ok, p := isSupport("http://www.biquge.com.tw/18_18550/")
+	fmt.Println(ok)
+	fmt.Println(p)
+}
+
 func Test网站输出(t *testing.T) {
 	w := 网站信息{
 		map[string]网站配置{"www.biquge.com.tw": {
