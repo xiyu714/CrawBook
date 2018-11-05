@@ -25,7 +25,7 @@ func getOneChapter(url string) (str string) {
 	}
 
 	//获取文档中的内容
-	doc.Find("#content").Each(func(i int, selection *goquery.Selection) {
+	doc.Find(w.V网站配置详情[当前网站].V内容).Each(func(i int, selection *goquery.Selection) {
 		str, _ = selection.Html()
 		//str = strings.Replace(str, "<br/>\n<br/>\n", "\r\n", -1)
 		//str = strings.Replace(str, "小?說", "", -1)

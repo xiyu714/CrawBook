@@ -49,7 +49,9 @@ func Test网站输出(t *testing.T) {
 		map[string]网站配置{"www.biquge.com.tw": {
 			"#info > h1:nth-child(1)",
 			[][2]string{{"hello", "world"}},
-			"#list > dl:nth-child(1)"},
+			"#list > dl:nth-child(1)",
+			"#content",
+		},
 		},
 	}
 

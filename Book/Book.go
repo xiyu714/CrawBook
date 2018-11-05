@@ -26,6 +26,7 @@ type 网站配置 struct {
 	V书名 string      `yaml:"书名"`
 	V过滤 [][2]string `yaml:"过滤,flow"` //key,tag  ,后面不能有空格
 	V章节 string      `yaml:"章节"`
+	V内容 string      `yaml:"内容"`
 }
 
 var w 网站信息
