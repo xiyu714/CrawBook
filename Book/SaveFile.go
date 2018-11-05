@@ -2,7 +2,9 @@ package Book
 
 import (
 	"fmt"
+	"log"
 	"os"
+	"path"
 	"strings"
 	"sync"
 )
@@ -17,10 +19,12 @@ var n = 0
 func (c *Book) Save() {
 	//var buf bytes.Buffer
 	abuf = make([]string, len(c.Zhangs))
+	filename := c.Name + ".txt"
+	outputFile := path.Join("output", filename)
 
-	file, err := os.Create(c.Name + ".txt")
+	file, err := os.Create(outputFile)
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
 	for i, u := range c.Zhangs {
 		wg.Add(1)
