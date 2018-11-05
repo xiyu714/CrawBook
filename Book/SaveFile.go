@@ -10,6 +10,10 @@ import (
 var abuf []string
 var wg sync.WaitGroup
 
+const max = 1000
+
+var n = 0
+
 func (c *Book) Save() {
 	//var buf bytes.Buffer
 	abuf = make([]string, len(c.Zhangs))
@@ -20,7 +24,12 @@ func (c *Book) Save() {
 	}
 	for i, u := range c.Zhangs {
 		wg.Add(1)
+		n++
 		go addOne(i, u)
+		if n > max {
+			wg.Wait()
+			n = 0
+		}
 
 		//buf.WriteString(u[1])
 		//fmt.Println(u[1])
