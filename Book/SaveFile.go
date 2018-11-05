@@ -22,9 +22,15 @@ func (c *Book) Save() {
 	filename := c.Name + ".txt"
 	outputFile := path.Join("output", filename)
 
+create:
 	file, err := os.Create(outputFile)
 	if err != nil {
-		log.Fatal(err)
+		if _, ok := err.(*os.PathError); ok { //通过类型断言判断错误类型
+			os.Mkdir("output", os.ModePerm)
+			goto create
+		} else {
+			log.Fatal(err)
+		}
 	}
 	for i, u := range c.Zhangs {
 		wg.Add(1)
